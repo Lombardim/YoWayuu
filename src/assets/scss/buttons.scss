@@ -1,0 +1,24 @@
+.btn {
+  border-radius: 1rem;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  font-size: 16px;
+  cursor: pointer;
+}
+.btn-primary {
+  @extend .btn;
+  background-color: var(--orange);
+}
+
+.btn-secondary {
+  @extend .btn;
+  background-color: var(--blue);
+}
+
+.btn-disabled {
+  @extend .btn;
+  background-color: var(--light-gray);
+  cursor: not-allowed;
+}

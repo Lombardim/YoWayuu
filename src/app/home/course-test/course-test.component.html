@@ -1,0 +1,38 @@
+<div class="test-container">
+  <div class="test-header">
+    <div class="header-title">
+      <mat-icon class="header-icon" (click)="returnToMenu()">arrow_back</mat-icon>
+      <h2>NIVEL BÁSICO - LECCIÓN 1 - TEST</h2>
+    </div>
+    <div class="progress-bar-container smaller-progress-bar">
+      <b>Progreso: </b>
+      <div class="progress-bar">
+        <div class="current-progress" [style.width.%]="75">75%</div>
+      </div>
+    </div>
+  </div>
+  <div class="test-content">
+    <h2 class="test-title">TEST</h2>
+    <div class="test-body">
+      <mat-stepper [linear]="true">
+        <mat-step *ngFor="let question of testBody; let i = index" [stepControl]="question.form">
+          <div class="stepper-body">
+            <h2>PREGUNTA {{i + 1}}</h2>
+            <p>{{question.question}}</p>
+            <div class="options-container">
+              <form [formGroup]="question.form">
+                <mat-radio-group [formControlName]="'question' + (i+1)">
+                  <mat-radio-button [value]="i + 1" *ngFor="let radio of question.options; let i = index">{{radio}}</mat-radio-button>
+                </mat-radio-group>
+              </form>
+            </div>
+          </div>
+        </mat-step>
+      </mat-stepper>
+    </div>
+    <div class="test-actions">
+      <button class="btn-secondary action-button" type="button" (click)="returnToMenu()">VOLVER AL MENÚ</button>
+      <button class="action-button" [class]="canBeSubmitted ? 'btn-primary' : 'btn-disabled'" type="button" (click)="submitTest()">CONTINUAR</button>
+    </div>
+  </div>
+</div>

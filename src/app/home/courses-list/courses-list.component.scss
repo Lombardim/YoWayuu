@@ -1,0 +1,38 @@
+.courses-list-container {
+  display: grid;
+  align-content: space-between;
+  height: 80%;
+  width: 100%;
+  grid-template-rows: repeat(3, 200px);
+  padding: 0 4%;
+
+  .course-card {
+    width: 80%;
+    display: flex;
+    border: 12px solid var(--purple);
+    border-radius: 10px;
+    padding: 1rem 2rem;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    .course-description {
+      .list-padding {
+        padding-left: 2rem;
+      }
+    }
+
+    .icon-container {
+      .card-icon {
+        color: var(--light-gray);
+        font-size: 3rem;
+        height: 3rem;
+        width: 3rem;
+      }
+    }
+  }
+
+  .inactive-card {
+    cursor: not-allowed;
+  }
+}

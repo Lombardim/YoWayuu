@@ -1,0 +1,22 @@
+<div class="lecture-container">
+  <div class="lecture-header">
+    <div class="header-title">
+      <mat-icon class="header-icon" (click)="returnToMenu()">arrow_back</mat-icon>
+      <h2>NIVEL BÁSICO - LECCIÓN 1 - LECTURA</h2>
+    </div>
+    <div class="progress-bar-container smaller-progress-bar">
+      <b>Progreso: </b>
+      <div class="progress-bar">
+        <div class="current-progress" [style.width.%]="0">‎</div>
+      </div>
+    </div>
+  </div>
+  <div class="lecture-content">
+    <h2 class="lecture-title">LECTURA</h2>
+    <div class="lecture-body">{{lectureBody}}</div>
+    <div class="lecture-actions">
+      <button class="btn-secondary action-button" type="button" (click)="returnToMenu()">VOLVER AL MENÚ</button>
+      <button class="btn-primary action-button" type="button" (click)="submitLecture()">CONTINUAR</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="login-container">
+  <h1>INICIAR SESIÓN</h1>
+  <form class="form-container" [formGroup]="loginForm" autocomplete="off">
+    <div class="input-container">
+      <input class="form-input" type="text" formControlName="username" placeholder="USUARIO" (keyup.enter)="login()"/>
+      <div class="password-input">
+        <input class="form-input" [type]="hidePassword ? 'text' : 'password'"
+           formControlName="password" placeholder="CONTRASEÑA" (keyup.enter)="login()"/>
+        <mat-icon class="password-icon notranslate" (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </div>
+
+    </div>
+    <div class="button-container">
+      <button type="submit" class="btn-primary" (click)="login()">
+        INICIAR SESIÓN
+      </button>
+      <button type="button" class="btn-secondary" (click)="register()">
+        REGISTRARSE
+      </button>
+    </div>
+  </form>
+</div>

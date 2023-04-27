@@ -1,0 +1,22 @@
+<div class="example-container">
+  <div class="example-header">
+    <div class="header-title">
+      <mat-icon class="header-icon" (click)="returnToMenu()">arrow_back</mat-icon>
+      <h2>NIVEL BÁSICO - LECCIÓN 1 - EJEMPLOS</h2>
+    </div>
+    <div class="progress-bar-container smaller-progress-bar">
+      <b>Progreso: </b>
+      <div class="progress-bar">
+        <div class="current-progress" [style.width.%]="25">25%</div>
+      </div>
+    </div>
+  </div>
+  <div class="example-content">
+    <h2 class="example-title">EJEMPLOS</h2>
+    <div class="example-body">{{lectureBody}}</div>
+    <div class="example-actions">
+      <button class="btn-secondary action-button" type="button" (click)="returnToMenu()">VOLVER AL MENÚ</button>
+      <button class="btn-primary action-button" type="button" (click)="submitExample()">CONTINUAR</button>
+    </div>
+  </div>
+</div>

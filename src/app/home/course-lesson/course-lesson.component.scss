@@ -1,0 +1,106 @@
+.lesson-container {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: 7% 80%;
+  gap: 5%;
+
+  .lesson-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--purple);
+    height: 100%;
+    width: 100%;
+    padding: 0 2rem;
+    gap: 1rem;
+    color: white;
+
+    .header-title {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .header-icon {
+      cursor: pointer;
+      font-size: 1.5rem;
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    .smaller-progress-bar {
+      width: 30%;
+      .progress-bar {
+        background-color: var(--white-background);
+      }
+    }
+  }
+  .lesson-level-container {
+    display: grid;
+    align-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 0 4%;
+    grid-template-rows: repeat(4, 120px);
+
+    .lesson-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 80%;
+      border: 12px solid var(--purple);
+      border-radius: 10px;
+      padding: 1rem 2rem;
+      cursor: pointer;
+
+      .icon-container {
+        .checked-icon {
+          font-size: 1.5rem;
+          height: 1.5rem;
+          width: 1.5rem;
+        }
+        .in-progress-icon {
+          @extend .checked-icon;
+          color: var(--light-gray);
+        }
+        .success-icon {
+          @extend .checked-icon;
+          color: var(--success-green);
+        }
+        .locked-icon {
+          color: var(--light-gray);
+          font-size: 3rem;
+          height: 3rem;
+          width: 3rem;
+        }
+      }
+
+      .lesson-description {
+        padding: 1rem 0;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .lesson-content {
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .list-padding {
+          display: flex;
+          padding-left: 2rem;
+          gap: 1rem;
+          flex-direction: column;
+        }
+      }
+    }
+
+    .inactive-card {
+      cursor: not-allowed;
+    }
+  }
+}

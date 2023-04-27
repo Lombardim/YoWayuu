@@ -1,1 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use 'assets/scss/colors';
+@use 'assets/scss/buttons';
+@use 'assets/scss/inputs';
+@use 'assets/scss/form';
+@use "@angular/material" as mat;
+@include mat.core();
+// hue. Available color palettes: https://material.io/design/color/
+$wayuu-primary: mat.define-palette(mat.$indigo-palette);
+$wayuu-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+// The warn palette is optional (defaults to red).
+$wayuu-warn: mat.define-palette(mat.$red-palette);
+$wayuu-theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $wayuu-primary,
+        accent: $wayuu-accent,
+        warn: $wayuu-warn,
+      ),
+    )
+);
+@include mat.all-component-themes($wayuu-theme);
+
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: revert, serif;
+}
+
+.component-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: row;
+  width: 100%;
+
+  .progress-bar {
+    width: 100%;
+    border: solid 1px black;
+    border-radius: 10px;
+
+    .current-progress {
+      padding: .5rem 0;
+      background-color: var(--green);
+      border-radius: 10px;
+      color: black;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}

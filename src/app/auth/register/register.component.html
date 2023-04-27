@@ -1,0 +1,24 @@
+<div class="register-container">
+  <h1>REGISTRO</h1>
+  <form class="form-container" [formGroup]="registerForm" autocomplete="off">
+    <div class="input-container">
+      <input class="form-input" type="text" formControlName="firstName" placeholder="NOMBRE" (keyup.enter)="register()"/>
+      <input class="form-input" type="email" formControlName="lastName" placeholder="APELLIDO" (keyup.enter)="register()"/>
+      <input class="form-input" type="text" formControlName="email" placeholder="EMAIL" (keyup.enter)="register()"/>
+      <div class="password-input">
+        <input class="form-input" [type]="hidePassword ? 'text' : 'password'"
+               formControlName="password" placeholder="CONTRASEÑA" (keyup.enter)="register()"/>
+        <mat-icon class="password-icon notranslate" (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </div>
+
+    </div>
+    <div class="button-container">
+      <button type="submit" class="btn-primary" (click)="register()">
+        REGISTRATE
+      </button>
+      <button type="button" class="btn-secondary" (click)="return()">
+        VOLVER
+      </button>
+    </div>
+  </form>
+</div>

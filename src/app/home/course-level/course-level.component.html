@@ -1,0 +1,49 @@
+<div class="course-container">
+  <div class="course-header">
+    <mat-icon class="header-icon" (click)="returnToList()">arrow_back</mat-icon>
+    <h2>NIVEL BÁSICO</h2>
+  </div>
+  <div class="course-level-container">
+    <div class="course-card" (click)="redirectToLesson(1)">
+      <div class="course-description">
+        <h2>LECTURA 1</h2>
+        <div class="course-content">
+          <p>CONTENIDO: </p>
+          <ul class="list-padding">
+            <li>Lectura</li>
+            <li>Ejemplos</li>
+            <li>Ejercicios</li>
+            <li>Test</li>
+          </ul>
+        </div>
+      </div>
+      <div class="icon-container">
+        <div class="progress-bar-container">
+          <b>Progreso: </b>
+          <div class="progress-bar">
+            <div class="current-progress" [style.width.%]="25">25%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="course-card inactive-card" matTooltip="Debe completar el nivel anterior">
+      <div class="course-description">
+        <h2>LECTURA 2</h2>
+
+        <div class="course-content">
+          <p>CONTENIDO: </p>
+          <ul class="list-padding">
+            <li>Lectura</li>
+            <li>Ejemplos</li>
+            <li>Ejercicios</li>
+            <li>Test</li>
+          </ul>
+        </div>
+      </div>
+      <div class="icon-container">
+        <mat-icon class="card-icon">lock</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
+

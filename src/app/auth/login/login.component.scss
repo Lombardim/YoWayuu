@@ -1,0 +1,25 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  padding: 3rem;
+  background-color: var(--white-background);
+  width: 31.25%;
+  height: 51.85%;
+  border-radius: .625rem;
+  box-shadow: 0 0 .8125rem .3125rem rgba(0,0,0, .2);
+
+  .input-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .button-container {
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}

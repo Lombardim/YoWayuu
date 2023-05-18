@@ -2,37 +2,83 @@
   <div class="test-header">
     <div class="header-title">
       <mat-icon class="header-icon" (click)="returnToMenu()">arrow_back</mat-icon>
-      <h2>NIVEL BÁSICO - LECCIÓN 1 - TEST</h2>
+      <h2>NIVEL BÁSICO - LECCIÓN {{courseService.currentLesson}} - TEST</h2>
     </div>
     <div class="progress-bar-container smaller-progress-bar">
       <b>Progreso: </b>
       <div class="progress-bar">
-        <div class="current-progress" [style.width.%]="75">75%</div>
+        <div class="current-progress" [style.width.%]="getCurrentCompletion()">{{getCurrentCompletion() === 0 ? '‎' : getCurrentCompletion() + '%'}}</div>
       </div>
     </div>
   </div>
   <div class="test-content">
     <h2 class="test-title">TEST</h2>
     <div class="test-body">
-      <mat-stepper [linear]="true">
-        <mat-step *ngFor="let question of testBody; let i = index" [stepControl]="question.form">
-          <div class="stepper-body">
-            <h2>PREGUNTA {{i + 1}}</h2>
-            <p>{{question.question}}</p>
-            <div class="options-container">
-              <form [formGroup]="question.form">
-                <mat-radio-group [formControlName]="'question' + (i+1)">
-                  <mat-radio-button [value]="i + 1" *ngFor="let radio of question.options; let i = index">{{radio}}</mat-radio-button>
-                </mat-radio-group>
-              </form>
-            </div>
+      <form class="form form-container" [formGroup]="testForm" autocomplete="off">
+        <div *ngIf="currentStep === 1" class="step-content">
+          <h3 class="question-title">Pregunta 1</h3>
+          <p class="question-text">{{courseService.test1StepContent[0]}}</p>
+          <mat-radio-group class="button-group" formControlName="step1">
+            <mat-radio-button [value]="courseService.test1Step1[0]">{{courseService.test1Step1[0]}}</mat-radio-button>
+            <mat-radio-button [value]="courseService.test1Step1[1]">{{courseService.test1Step1[1]}}</mat-radio-button>
+            <mat-radio-button [value]="courseService.test1Step1[2]">{{courseService.test1Step1[2]}}</mat-radio-button>
+            <mat-radio-button [value]="courseService.test1Step1[3]">{{courseService.test1Step1[3]}}</mat-radio-button>
+          </mat-radio-group>
+          <div class="align-end">
+            <button class="btn-primary action-button" type="button" (click)="nextStep(1)">SIGUIENTE</button>
           </div>
-        </mat-step>
-      </mat-stepper>
+        </div>
+        <div *ngIf="currentStep === 2" class="step-content">
+          <h3 class="question-title">Pregunta 2</h3>
+          <p class="question-text">{{courseService.test1StepContent[1]}}</p>
+          <mat-radio-group class="button-group" formControlName="step2">
+            <mat-radio-button [value]="courseService.test1Step2[0]">{{courseService.test1Step2[0]}}</mat-radio-button>
+            <mat-radio-button [value]="courseService.test1Step2[1]">{{courseService.test1Step2[1]}}</mat-radio-button>
+            <mat-radio-button [value]="courseService.test1Step2[2]">{{courseService.test1Step2[2]}}</mat-radio-button>
+            <mat-radio-button [value]="courseService.test1Step2[3]">{{courseService.test1Step2[3]}}</mat-radio-button>
+          </mat-radio-group>
+
+          <div class="button-container">
+            <button class="btn-secondary action-button" type="button" (click)="previousStep()">ANTERIOR</button>
+            <button class="btn-primary action-button" type="button" (click)="nextStep(2)">SIGUIENTE</button>
+          </div>
+        </div>
+        <div *ngIf="currentStep === 3" class="step-content">
+          <h3 class="question-title">Pregunta 3</h3>
+          <p class="question-text">{{courseService.test1StepContent[2]}}</p>
+          <div class="input-container">
+            <input class="form-input" type="text" placeholder="Escriba su respuesta..." formControlName="step3">
+          </div>
+          <div class="button-container">
+            <button class="btn-secondary action-button" type="button" (click)="previousStep()">ANTERIOR</button>
+            <button class="btn-primary action-button" type="button" (click)="nextStep(3)">SIGUIENTE</button>
+          </div>
+        </div>
+        <div *ngIf="currentStep === 4" class="step-content">
+          <h3 class="question-title">Pregunta 4</h3>
+          <p class="question-text">{{courseService.test1StepContent[3]}}</p>
+          <div class="audio-container">
+            <mat-icon class="audio-icon" (click)="playSound()">volume_up</mat-icon>
+          </div>
+          <div class="selectable-options">
+            <div class="option" [class]="testForm.get('step4')?.value === courseService.test1Step4[0] ? 'active-option' : ''"
+               (click)="selectOption(courseService.test1Step4[0])">{{courseService.test1Step4[0]}}</div>
+            <div class="option" [class]="testForm.get('step4')?.value === courseService.test1Step4[1] ? 'active-option' : ''"
+               (click)="selectOption(courseService.test1Step4[1])">{{courseService.test1Step4[1]}}</div>
+            <div class="option" [class]="testForm.get('step4')?.value === courseService.test1Step4[2] ? 'active-option' : ''"
+               (click)="selectOption(courseService.test1Step4[2])">{{courseService.test1Step4[2]}}</div>
+            <div class="option" [class]="testForm.get('step4')?.value === courseService.test1Step4[3] ? 'active-option' : ''"
+               (click)="selectOption(courseService.test1Step4[3])">{{courseService.test1Step4[3]}}</div>
+          </div>
+          <div class="button-container">
+            <button class="btn-secondary action-button" type="button" (click)="previousStep()">ANTERIOR</button>
+          </div>
+        </div>
+      </form>
     </div>
     <div class="test-actions">
       <button class="btn-secondary action-button" type="button" (click)="returnToMenu()">VOLVER AL MENÚ</button>
-      <button class="action-button" [class]="canBeSubmitted ? 'btn-primary' : 'btn-disabled'" type="button" (click)="submitTest()">CONTINUAR</button>
+      <button class="btn-primary action-button" type="button" (click)="submitTest()">CONTINUAR</button>
     </div>
   </div>
 </div>

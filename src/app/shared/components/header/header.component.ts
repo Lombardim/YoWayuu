@@ -17,4 +17,8 @@ export class HeaderComponent {
     localStorage.removeItem('loggedId');
     await this.router.navigate(['/auth/login']);
   }
+
+  async redirectToGrades(): Promise<void> {
+    await this.router.navigate(['/home/grades']);
+  }
 }

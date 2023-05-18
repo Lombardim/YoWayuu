@@ -8,12 +8,17 @@ import {CourseLectureComponent} from "./course-lecture/course-lecture.component"
 import {CourseExampleComponent} from "./course-example/course-example.component";
 import {CourseExerciseComponent} from "./course-exercise/course-exercise.component";
 import {CourseTestComponent} from "./course-test/course-test.component";
+import {AdminScreenComponent} from "./admin-screen/admin-screen.component";
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
+      {
+        path: 'administration',
+        component: AdminScreenComponent
+      },
       {
         path: 'courses-list',
         component: CoursesListComponent

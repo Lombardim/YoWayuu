@@ -1,0 +1,62 @@
+<div class="administration-container">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- NOMBRE Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- APELLIDO Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef> APELLIDO </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    </ng-container>
+
+    <!-- LECTURA 1 Column -->
+    <ng-container matColumnDef="lecture1">
+      <th mat-header-cell *matHeaderCellDef> LECTURA 1 </th>
+      <td mat-cell *matCellDef="let element"> {{element.lecture1}} </td>
+    </ng-container>
+
+    <!-- LECTURA 2 Column -->
+    <ng-container matColumnDef="lecture2">
+      <th mat-header-cell *matHeaderCellDef> LECTURA 2 </th>
+      <td mat-cell *matCellDef="let element"> {{element.lecture2}} </td>
+    </ng-container>
+
+    <!-- LECTURA 3 Column -->
+    <ng-container matColumnDef="lecture3">
+      <th mat-header-cell *matHeaderCellDef> LECTURA 3 </th>
+      <td mat-cell *matCellDef="let element"> {{element.lecture3}} </td>
+    </ng-container>
+
+    <!-- LECTURA 4 Column -->
+    <ng-container matColumnDef="lecture4">
+      <th mat-header-cell *matHeaderCellDef> LECTURA 4 </th>
+      <td mat-cell *matCellDef="let element"> {{element.lecture4}} </td>
+    </ng-container>
+
+    <!-- LECTURA 5 Column -->
+    <ng-container matColumnDef="lecture5">
+      <th mat-header-cell *matHeaderCellDef> LECTURA 5 </th>
+      <td mat-cell *matCellDef="let element"> {{element.lecture5}} </td>
+    </ng-container>
+
+    <!-- LECTURA 6 Column -->
+    <ng-container matColumnDef="lecture6">
+      <th mat-header-cell *matHeaderCellDef> LECTURA 6 </th>
+      <td mat-cell *matCellDef="let element"> {{element.lecture6}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

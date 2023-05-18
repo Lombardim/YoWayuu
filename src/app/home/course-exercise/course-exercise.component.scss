@@ -60,11 +60,18 @@
     }
 
     .exercise-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       width: 100%;
       background-color: var(--white-background);
       padding: 1rem;
       border-radius: 10px;
       white-space: pre-wrap;
+
+      .upload-file {
+        align-self: flex-end;
+      }
     }
 
     .exercise-actions {

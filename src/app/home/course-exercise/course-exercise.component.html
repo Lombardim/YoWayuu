@@ -2,21 +2,29 @@
   <div class="exercise-header">
     <div class="header-title">
       <mat-icon class="header-icon" (click)="returnToMenu()">arrow_back</mat-icon>
-      <h2>NIVEL BÁSICO - LECCIÓN 1 - EJERCICIO</h2>
+      <h2>NIVEL BÁSICO - LECCIÓN {{courseService.currentLesson}} - EJERCICIO</h2>
     </div>
     <div class="progress-bar-container smaller-progress-bar">
       <b>Progreso: </b>
       <div class="progress-bar">
-        <div class="current-progress" [style.width.%]="50">50%</div>
+        <div class="current-progress" [style.width.%]="getCurrentCompletion()">{{getCurrentCompletion() === 0 ? '‎' : getCurrentCompletion() + '%'}}</div>
       </div>
     </div>
   </div>
   <div class="exercise-content">
     <h2 class="exercise-title">EJERCICIO</h2>
-    <div class="exercise-body">{{lectureBody}}</div>
+    <div class="exercise-body">
+      <div class="text-container">
+        <p>{{courseService.exercise1Content}}</p>
+      </div>
+      <div class="upload-file">
+        <label for="file-upload">Adjuntar archivo: </label>
+        <input id="file-upload" type="file" accept=".pdf,.docx,.txt" (change)="onFileSelected($event)">
+      </div>
+    </div>
     <div class="exercise-actions">
       <button class="btn-secondary action-button" type="button" (click)="returnToMenu()">VOLVER AL MENÚ</button>
-      <button class="btn-primary action-button" type="button" (click)="submitExercise()">CONTINUAR</button>
+      <button class="action-button" [class]="uploadedFile ? 'btn-primary' : 'btn-disabled'" type="button" (click)="submitExercise()">CONTINUAR</button>
     </div>
   </div>
 </div>

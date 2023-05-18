@@ -29,8 +29,13 @@ export class LoginComponent {
 
   async login() {
     if(this.loginForm.valid) {
-      localStorage.setItem('loggedId', '1');
-      await this.router.navigate(['/home/courses-list']);
+      if (this.loginForm.get('username')?.value === 'admin@admin.com' && this.loginForm.get('password')?.value === 'admin123') {
+        localStorage.setItem('loggedId', '0');
+        await this.router.navigate(['/home/administration']);
+      } else {
+        localStorage.setItem('loggedId', '1');
+        await this.router.navigate(['/home/courses-list']);
+      }
     } else {
       this.toastService.error('Hay errores en los campos');
     }

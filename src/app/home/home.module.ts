@@ -12,6 +12,7 @@ import { CourseTestComponent } from './course-test/course-test.component';
 import {SharedModule} from "../shared/shared.module";
 import {MaterialModule} from "../material/material.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import { AdminScreenComponent } from './admin-screen/admin-screen.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     CourseLectureComponent,
     CourseExampleComponent,
     CourseExerciseComponent,
-    CourseTestComponent
+    CourseTestComponent,
+    AdminScreenComponent
   ],
   imports: [
     CommonModule,

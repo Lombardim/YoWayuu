@@ -2,7 +2,8 @@
   <div class="exercise-header">
     <div class="header-title">
       <mat-icon class="header-icon" (click)="returnToMenu()">arrow_back</mat-icon>
-      <h2>NIVEL BÁSICO - LECCIÓN {{courseService.currentLesson}} - EJERCICIO</h2>
+      <h2>NIVEL {{courseService.currentCourse === 'basic' ? 'BÁSICO' : courseService.currentCourse === 'intermediate'
+        ? 'INTERMEDIO' : 'AVANZADO'}} - LECCIÓN {{courseService.currentLesson}} - EJERCICIO</h2>
     </div>
     <div class="progress-bar-container smaller-progress-bar">
       <b>Progreso: </b>
@@ -13,9 +14,9 @@
   </div>
   <div class="exercise-content">
     <h2 class="exercise-title">EJERCICIO</h2>
-    <div class="exercise-body">
+    <div class="exercise-body" *ngIf="exerciseData">
       <div class="text-container">
-        <p>{{courseService.exercise1Content}}</p>
+        <p>{{exerciseData.exerciseContent}}</p>
       </div>
       <div class="upload-file">
         <label for="file-upload">Adjuntar archivo: </label>

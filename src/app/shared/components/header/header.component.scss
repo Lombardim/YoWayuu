@@ -5,7 +5,22 @@
   padding: 1rem 2rem;
   height: 100%;
   width: 100%;
-  background-color: var(--green);
+  background-color: var(--dark-purple);
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+
+    img {
+      position: absolute;
+    }
+
+    .header-text {
+      padding-left: 300px;
+    }
+  }
 
   .icons-container {
     display: flex;

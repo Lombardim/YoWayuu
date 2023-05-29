@@ -1,0 +1,60 @@
+{
+  "1": {
+    "lecture": {
+      "lectureTitle": "Abecedario Wayuunaiki",
+      "lectureContent": "El wayuunaiki (guajiro), de la familia lingüística arawak, es la lengua de los Wayuu, habitantes de la Península de La Guajira (noreste colombiano, noroeste venezolano).\n\n El alfabeto wayuunaiki consta de 20 letras: a, ch, e, i, j, k, ', l, m, n, o, p, r, s, sh, t, u, ü, w, y. Seis son vocales: a, e, i, o, u, ü son vocales, las demás consonantes, aunque \"w\", \"y\" pueden considerarse semivocales por su naturaleza fonológica.",
+      "lectureVideoURL": "https://www.youtube.com/embed/zbgZb57UI68",
+      "lectureVideoDescription": "Abecedario Wayuunaiki"
+    },
+    "example": {
+      "exampleTitle": "Pronunciación Abecedario Wayuunaiki",
+      "exampleContent": "Cada palabra en wayuunaiki se puede leer con el mismo sonido de las letras en español, salvo excepciones: \n\n- Las vocales dobles suenan más largas que las vocales simples: aakataa (quitar), aneekaa (escoger), miichi (casa).\n\n- Las consonantes dobles suenan más largas que las consonantes simples: anneerü (oveja), asottaa (quebrar).\n\n- La letra ü suena como la ‘u’, pero sin redondear los labios: pütchi (palabra).\n\n- La letra k suena como la ‘c’ en ‘casa’ y la ‘qu’ en ‘queso’: ekaa (comer), siki (fuego).\n\n- La letra ' es un cierre glotal: a'anaa (tejer), ka'i (día), ja'rai (cinco).\n\n- La letra l es semejante a la ‘r’ de español. Es una vibrante simple pero se pronuncia con la lengua en posición ligeramente más lateral y un poco más hacia atrás que para pronunciar la ‘r’: alawaa (mentira), aleshi (cuñado)\n\n"
+    },
+    "exercise": {
+      "exerciseContent": "Investigue cómo se pronuncia la \"r\", las palabras que terminan en \"rü\" y la letra \"ch\", y de al menos 1 ejemplo de cada uno. Al terminar la actividad adjunte el archivo en formato .pdf, .docx o .txt."
+    },
+    "test": {
+      "testStepContent": ["¿Cuáles son las consonantes siguientes a \"P y R\"?", "¿Cuál es la sexta vocal?", "¿Cuántas consonantes conforman el alfabeto wayuunaiki?", "¿Qué palabra se escucha en el siguiente audio?"],
+      "testStepTypes": ["multipleSelection", "multipleSelection", "inputSelection", "audioSelection"],
+      "testStep1":  ["SH, T, U", "H, S, T", "S, SH y T", "W, Y, T"],
+      "testStep2": ["U", "A", "Ü", "E"],
+      "testStep3": [""],
+      "testStep4": ["Muusa", "Mujuu", "Shunui", "Yüüja"],
+      "testAudioURL4": "/assets/audios/muusa.wav",
+      "testCorrectAnswer1": "S, SH y T",
+      "testCorrectAnswer2": "Ü",
+      "testCorrectAnswer3": "15",
+      "testCorrectAnswer4": "Muusa"
+    },
+    "grading": 0
+  },
+  "2": {
+    "lecture": {
+      "lectureTitle": "¿Cómo saludar en Wayuunaiki?",
+      "lectureContent": "En la cultura Wayuu, Asakaa (el saludo) es una manifestación simbólica muy importante. Porque a través de él, se expresa el afecto que se le tiene a la persona. De igual manera, la atención se considera primordial dentro de la cultura y en especial la persona que saluda es la que llega al lugar. Asimismo, no es tenido en cuenta el saludo de los buenos días, sino que se pregunta: ¿Jamaya pü\"lapüin? que significa: ¿Qué tal estuvo tu sueño?.",
+      "lectureVideoDescription": "¿Cómo saludar en Wayuunaiki?",
+      "lectureVideoURL": "https://www.youtube.com/embed/4jMXXXgkfeI"
+    },
+    "example": {
+      "exampleTitle": "Números en Wayuunaiki",
+      "exampleContent": "La numeración Wayuu, al igual que otras es el resultado de la práctica cotidiana de efectuar cálculos y de estimar rápidamente algunos resultados.Para la enseñanza de los números en wayuunaiki se debe partir de los diez primeros y posterior a ello diferenciar o conocer las combinaciones numerales con sus respectivos sufijos.\n\nEn nuestra cultura Wayuu los números representan las riquezas, no obstante también hacen parte de nuestra práctica cotidiana en el momento de efectuar cálculos.\n\n- Waneshi (1. Uno).\n\n- Piama (2. Dos).\n\n- Apünüin (3. Tres).\n\n- Pienchi (4. Cuatro).\n\n- Ja'arai (5. Cinco)."
+    },
+    "exercise": {
+      "exerciseContent": "Investigar cómo se escriben los números del 1 al 10 en Wayuunaiki. Al terminar la actividad adjunte el archivo en formato .pdf, .docx o .txt."
+    },
+    "test": {
+      "testStepContent": ["¿Cómo se escribe el número \"6\" en el idioma wayuunaiki?", "¿Qué frase se escucha en el siguiente audio?", "¿El saludo \"Jamaya pü'lapüin\" traduce al español?", "Arrastre las respuestas correctas en orden de acuerdo a su traducción:"],
+      "testStepTypes": ["inputSelection", "audioSelection", "multipleSelection", "fillBlanks"],
+      "testStep1":  [""],
+      "testStep2": ["Jama Taata", "Jamaya Pia", "Jamaya pü'lapüin", "Jalejeeshi (sü) Pia"],
+      "testStep3": ["Muy buenos días", "Bienvenidos", "Buenas noches", "¿Qué tal estuvo tu sueño?"],
+      "testStep4": ["Waneshi", "Piama", "Apünüin", "Pienchi", "Ja'arai", "Aipirua", "Akaratshi", "Mekiisat", "Miekietsat", "Po'loo"],
+      "testAudioURL2": "/assets/audios/jamaya_pia.wav",
+      "testCorrectAnswer1": "Aipirua",
+      "testCorrectAnswer2": "Jamaya Pia",
+      "testCorrectAnswer3": "¿Qué tal estuvo tu sueño?",
+      " ": ["Uno", "Dos", "Tres", "Cuatro", "Cinco", "Seis", "Siete", "Ocho", "Nueve", "Diez"]
+    },
+    "grading":  0
+  }
+}

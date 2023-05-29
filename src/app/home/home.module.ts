@@ -13,6 +13,7 @@ import {SharedModule} from "../shared/shared.module";
 import {MaterialModule} from "../material/material.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import { AdminScreenComponent } from './admin-screen/admin-screen.component';
+import {CdkDrag, CdkDropList} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -26,12 +27,14 @@ import { AdminScreenComponent } from './admin-screen/admin-screen.component';
     CourseTestComponent,
     AdminScreenComponent
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    HomeRoutingModule,
-    SharedModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        MaterialModule,
+        HomeRoutingModule,
+        SharedModule,
+        ReactiveFormsModule,
+        CdkDropList,
+        CdkDrag
+    ]
 })
 export class HomeModule { }

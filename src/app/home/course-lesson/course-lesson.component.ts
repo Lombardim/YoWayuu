@@ -41,46 +41,46 @@ export class CourseLessonComponent implements OnInit {
   }
 
   getCurrentLessonCompletion(): number {
-    return this.currentLesson === 1 ? this.courseService.basicLevel1Progress : this.courseService.basicLevel2Progress;
+    return this.courseService.levelProgress[this.courseService.currentLesson.toString()];
   }
 
   isLectureLocked(): boolean {
-    const completionStatus = this.currentLesson === 1 ? this.courseService.lesson1CompletionStatus[0] : this.courseService.lesson2CompletionStatus[0];
+    const completionStatus = this.courseService.lessonCompletionStatus[this.courseService.currentLesson.toString()][0];
     return completionStatus.locked;
   }
 
   isLectureCompleted(): boolean {
-    const completionStatus = this.currentLesson === 1 ? this.courseService.lesson1CompletionStatus[0] : this.courseService.lesson2CompletionStatus[0];
+    const completionStatus = this.courseService.lessonCompletionStatus[this.courseService.currentLesson.toString()][0];
     return completionStatus.completed;
   }
 
   isExampleLocked(): boolean {
-    const completionStatus = this.currentLesson === 1 ? this.courseService.lesson1CompletionStatus[1] : this.courseService.lesson2CompletionStatus[1];
+    const completionStatus = this.courseService.lessonCompletionStatus[this.courseService.currentLesson.toString()][1];
     return completionStatus.locked;
   }
 
   isExampleCompleted(): boolean {
-    const completionStatus = this.currentLesson === 1 ? this.courseService.lesson1CompletionStatus[1] : this.courseService.lesson2CompletionStatus[1];
+    const completionStatus = this.courseService.lessonCompletionStatus[this.courseService.currentLesson.toString()][1];
     return completionStatus.completed;
   }
 
   isExerciseLocked(): boolean {
-    const completionStatus = this.currentLesson === 1 ? this.courseService.lesson1CompletionStatus[2] : this.courseService.lesson2CompletionStatus[2];
+    const completionStatus = this.courseService.lessonCompletionStatus[this.courseService.currentLesson.toString()][2];
     return completionStatus.locked;
   }
 
   isExerciseCompleted(): boolean {
-    const completionStatus = this.currentLesson === 1 ? this.courseService.lesson1CompletionStatus[2] : this.courseService.lesson2CompletionStatus[2];
+    const completionStatus = this.courseService.lessonCompletionStatus[this.courseService.currentLesson.toString()][2];
     return completionStatus.completed;
   }
 
   isTestLocked(): boolean {
-    const completionStatus = this.currentLesson === 1 ? this.courseService.lesson1CompletionStatus[3] : this.courseService.lesson2CompletionStatus[3];
+    const completionStatus = this.courseService.lessonCompletionStatus[this.courseService.currentLesson.toString()][3];
     return completionStatus.locked;
   }
 
   isTestCompleted(): boolean {
-    const completionStatus = this.currentLesson === 1 ? this.courseService.lesson1CompletionStatus[3] : this.courseService.lesson2CompletionStatus[3];
+    const completionStatus = this.courseService.lessonCompletionStatus[this.courseService.currentLesson.toString()][3];
     return completionStatus.completed;
   }
 }

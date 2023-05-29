@@ -1,12 +1,16 @@
 <div class="header-body">
-  <h2 class="header-text">Bienvenido...</h2>
+  <div class="logo-container">
+    <img src="assets/image/wayuu.png" alt="Logo Wayuu">
+    <h2 class="header-text" *ngIf="loggedUser && !isAdmin">Bienvenido {{loggedUser.name}} {{loggedUser.lastName}}</h2>
+    <h2 class="header-text" *ngIf="loggedUser && isAdmin">ADMINISTRACIÓN DE USUARIOS</h2>
+  </div>
   <div class="icons-container">
 <!--    <div class="streak-container">-->
 <!--      <h3>5</h3>-->
 <!--      <mat-icon class="header-icon fire-icon">local_fire_department</mat-icon>-->
 <!--    </div>-->
 
-    <mat-icon class="header-icon" (click)="redirectToGrades()">grade</mat-icon>
+<!--    <mat-icon class="header-icon" (click)="redirectToGrades()">grade</mat-icon>-->
 
     <mat-icon class="header-icon" (click)="logOut()">logout</mat-icon>
   </div>

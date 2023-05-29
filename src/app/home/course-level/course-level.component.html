@@ -1,12 +1,12 @@
-<div class="course-container">
+<div class="course-container" *ngIf="courseService.currentCourse === 'basic'">
   <div class="course-header">
     <mat-icon class="header-icon" (click)="returnToList()">arrow_back</mat-icon>
-    <h2>NIVEL BÁSICO</h2>
+    <h2>NIVEL {{courseService.currentCourse === 'basic' ? 'BÁSICO' : courseService.currentCourse === 'intermediate' ? 'INTERMEDIO' : 'AVANZADO'}}</h2>
   </div>
   <div class="course-level-container">
     <div class="course-card" (click)="redirectToLesson(1)">
       <div class="course-description">
-        <h2>LECTURA 1 {{courseService.basicLevel1Progress === 100 ? '- Nota final: ' + courseService.testResults + '/4' : ''}}</h2>
+        <h2>LECTURA 1 {{courseService.levelProgress['1'] === 100 ? '- Nota final: ' + (courseService.coursesData ? courseService.coursesData[courseService.currentLesson.toString()].grading : 0) + '/4' : ''}}</h2>
         <div class="course-content">
           <p>CONTENIDO: </p>
           <ul class="list-padding">
@@ -21,17 +21,17 @@
         <div class="progress-bar-container">
           <b>Progreso: </b>
           <div class="progress-bar">
-            <div class="current-progress" [style.width.%]="courseService.basicLevel1Progress">{{courseService.basicLevel1Progress === 0 ? '‎' : courseService.basicLevel1Progress +'%'}}</div>
+            <div class="current-progress" [style.width.%]="courseService.levelProgress['1']">{{courseService.levelProgress['1'] === 0 ? '‎' : courseService.levelProgress['1'] +'%'}}</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="course-card" [class]="courseService.basicLevel1Progress < 100 ? 'inactive-card' : ''"
-         [matTooltip]="courseService.basicLevel1Progress < 100 ? 'Debe completar el nivel anterior' : ''"
-      (click)="checkCourseCompletion()"
+    <div class="course-card" [class]="courseService.levelProgress['1'] < 100 ? 'inactive-card' : ''"
+         [matTooltip]="courseService.levelProgress['1'] < 100 ? 'Debe completar el nivel anterior' : ''"
+      (click)="checkCourseCompletion('1')"
     >
       <div class="course-description">
-        <h2>LECTURA 2</h2>
+        <h2>LECTURA 2 {{courseService.levelProgress['2'] === 100 ? '- Nota final: ' + (courseService.coursesData ? courseService.coursesData[courseService.currentLesson.toString()].grading : 0) + '/4' : ''}}</h2>
 
         <div class="course-content">
           <p>CONTENIDO: </p>
@@ -44,11 +44,127 @@
         </div>
       </div>
       <div class="icon-container">
-        <mat-icon *ngIf="courseService.basicLevel1Progress < 100" class="card-icon">lock</mat-icon>
-        <div *ngIf="courseService.basicLevel1Progress === 100" class="progress-bar-container">
+        <mat-icon *ngIf="courseService.levelProgress['1'] < 100" class="card-icon">lock</mat-icon>
+        <div *ngIf="courseService.levelProgress['1'] === 100" class="progress-bar-container">
           <b>Progreso: </b>
           <div class="progress-bar">
-            <div class="current-progress" [style.width.%]="courseService.basicLevel2Progress">{{courseService.basicLevel2Progress === 0 ? '‎' : courseService.basicLevel2Progress +'%'}}</div>
+            <div class="current-progress" [style.width.%]="courseService.levelProgress['2']">{{getLevelProgress('2') ? '‎' : courseService.levelProgress['2'] +'%'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="course-container" *ngIf="courseService.currentCourse === 'intermediate'">
+  <div class="course-header">
+    <mat-icon class="header-icon" (click)="returnToList()">arrow_back</mat-icon>
+    <h2>NIVEL INTERMEDIO</h2>
+  </div>
+  <div class="course-level-container">
+    <div class="course-card" (click)="redirectToLesson(3)">
+      <div class="course-description">
+        <h2>LECTURA 3 {{courseService.levelProgress['3'] === 100 ? '- Nota final: ' + (courseService.coursesData ? courseService.coursesData[courseService.currentLesson.toString()].grading : 0) + '/4' : ''}}</h2>
+        <div class="course-content">
+          <p>CONTENIDO: </p>
+          <ul class="list-padding">
+            <li>Lectura</li>
+            <li>Ejemplos</li>
+            <li>Ejercicios</li>
+            <li>Test</li>
+          </ul>
+        </div>
+      </div>
+      <div class="icon-container">
+        <div class="progress-bar-container">
+          <b>Progreso: </b>
+          <div class="progress-bar">
+            <div class="current-progress" [style.width.%]="courseService.levelProgress['3']">{{getLevelProgress('3') ? '‎' : courseService.levelProgress['3'] +'%'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="course-card" [class]="courseService.levelProgress['3'] < 100 ? 'inactive-card' : ''"
+         [matTooltip]="courseService.levelProgress['3'] < 100 ? 'Debe completar el nivel anterior' : ''"
+      (click)="checkCourseCompletion('3')"
+    >
+      <div class="course-description">
+        <h2>LECTURA 4 {{courseService.levelProgress['4'] === 100 ? '- Nota final: ' + (courseService.coursesData ? courseService.coursesData[courseService.currentLesson.toString()].grading : 0) + '/4' : ''}}</h2>
+
+        <div class="course-content">
+          <p>CONTENIDO: </p>
+          <ul class="list-padding">
+            <li>Lectura</li>
+            <li>Ejemplos</li>
+            <li>Ejercicios</li>
+            <li>Test</li>
+          </ul>
+        </div>
+      </div>
+      <div class="icon-container">
+        <mat-icon *ngIf="courseService.levelProgress['4'] < 100" class="card-icon">lock</mat-icon>
+        <div *ngIf="courseService.levelProgress['4'] === 100" class="progress-bar-container">
+          <b>Progreso: </b>
+          <div class="progress-bar">
+            <div class="current-progress" [style.width.%]="courseService.levelProgress['4']">{{getLevelProgress('4') ? '‎' : courseService.levelProgress['4'] +'%'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="course-container" *ngIf="courseService.currentCourse === 'advanced'">
+  <div class="course-header">
+    <mat-icon class="header-icon" (click)="returnToList()">arrow_back</mat-icon>
+    <h2>NIVEL AVANZADO</h2>
+  </div>
+  <div class="course-level-container">
+    <div class="course-card" (click)="redirectToLesson(5)">
+      <div class="course-description">
+        <h2>LECTURA 5 {{courseService.levelProgress['5'] === 100 ? '- Nota final: ' + (courseService.coursesData ? courseService.coursesData[courseService.currentLesson.toString()].grading : 0) + '/4' : ''}}</h2>
+        <div class="course-content">
+          <p>CONTENIDO: </p>
+          <ul class="list-padding">
+            <li>Lectura</li>
+            <li>Ejemplos</li>
+            <li>Ejercicios</li>
+            <li>Test</li>
+          </ul>
+        </div>
+      </div>
+      <div class="icon-container">
+        <div class="progress-bar-container">
+          <b>Progreso: </b>
+          <div class="progress-bar">
+            <div class="current-progress" [style.width.%]="courseService.levelProgress['5']">{{getLevelProgress('5') ? '‎' : courseService.levelProgress['5'] +'%'}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="course-card" [class]="courseService.levelProgress['5'] < 100 ? 'inactive-card' : ''"
+         [matTooltip]="courseService.levelProgress['5'] < 100 ? 'Debe completar el nivel anterior' : ''"
+      (click)="checkCourseCompletion('5')"
+    >
+      <div class="course-description">
+        <h2>LECTURA 6 {{courseService.levelProgress['6'] === 100 ? '- Nota final: ' + (courseService.coursesData ? courseService.coursesData[courseService.currentLesson.toString()].grading : 0) + '/4' : ''}}</h2>
+
+        <div class="course-content">
+          <p>CONTENIDO: </p>
+          <ul class="list-padding">
+            <li>Lectura</li>
+            <li>Ejemplos</li>
+            <li>Ejercicios</li>
+            <li>Test</li>
+          </ul>
+        </div>
+      </div>
+      <div class="icon-container">
+        <mat-icon *ngIf="courseService.levelProgress['6'] < 100" class="card-icon">lock</mat-icon>
+        <div *ngIf="courseService.levelProgress['6'] === 100" class="progress-bar-container">
+          <b>Progreso: </b>
+          <div class="progress-bar">
+            <div class="current-progress" [style.width.%]="courseService.levelProgress['6']">{{getLevelProgress('6') ? '‎' : courseService.levelProgress['6'] +'%'}}</div>
           </div>
         </div>
       </div>

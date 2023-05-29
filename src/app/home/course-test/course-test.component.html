@@ -13,30 +13,127 @@
   </div>
   <div class="test-content">
     <h2 class="test-title">TEST</h2>
-    <div class="test-body">
-      <form class="form form-container" [formGroup]="testForm" autocomplete="off">
+    <div class="test-body" *ngIf="testData">
+      <div class="message-container" *ngIf="courseService.coursesData && courseService.coursesData[courseService.currentLesson.toString()].grading === 4">
+        <span class="completed-test">¡Felicitaciones, obtuviste la máxima nota posible!</span>
+      </div>
+      <form *ngIf="courseService.coursesData && courseService.coursesData[courseService.currentLesson.toString()].grading < 4"
+          class="form form-container" [formGroup]="testForm" autocomplete="off">
         <div *ngIf="currentStep === 1" class="step-content">
           <h3 class="question-title">Pregunta 1</h3>
-          <p class="question-text">{{courseService.test1StepContent[0]}}</p>
-          <mat-radio-group class="button-group" formControlName="step1">
-            <mat-radio-button [value]="courseService.test1Step1[0]">{{courseService.test1Step1[0]}}</mat-radio-button>
-            <mat-radio-button [value]="courseService.test1Step1[1]">{{courseService.test1Step1[1]}}</mat-radio-button>
-            <mat-radio-button [value]="courseService.test1Step1[2]">{{courseService.test1Step1[2]}}</mat-radio-button>
-            <mat-radio-button [value]="courseService.test1Step1[3]">{{courseService.test1Step1[3]}}</mat-radio-button>
+          <p class="question-text">{{testData.testStepContent[0]}}</p>
+
+          <mat-radio-group class="button-group" formControlName="step1" *ngIf="testData.testStepTypes[0] === 'multipleSelection'">
+            <mat-radio-button [value]="testData.testStep1[0]">{{testData.testStep1[0]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep1[1]">{{testData.testStep1[1]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep1[2]">{{testData.testStep1[2]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep1[3]">{{testData.testStep1[3]}}</mat-radio-button>
           </mat-radio-group>
+          <div class="input-container" *ngIf="testData.testStepTypes[0] === 'inputSelection'">
+            <input class="form-input" type="text" placeholder="Escriba su respuesta..." formControlName="step1">
+          </div>
+          <div class="drag-and-drop-container" *ngIf="testData.testStepTypes[0] === 'fillBlanks'">
+            <div *ngIf="testData"
+              cdkDropList
+              #list="cdkDropList"
+              [cdkDropListData]="testData.testStep1"
+              class="drag-and-drop-list">
+              <div class="drag-and-drop-box" *ngFor="let item of testData.testStep1" cdkDragDisabled>{{item}}</div>
+            </div>
+            <div
+              cdkDropList
+              #unorderedDrop="cdkDropList"
+              [cdkDropListData]="unorderedList"
+              [cdkDropListConnectedTo]="[orderedDrop]"
+              class="drag-and-drop-list"
+              (cdkDropListDropped)="drop($event, 'step1')">
+              <div class="drag-and-drop-box" *ngFor="let item of unorderedList" cdkDrag>{{item}}</div>
+            </div>
+            <div
+              cdkDropList
+              #orderedDrop="cdkDropList"
+              [cdkDropListData]="orderedList"
+              [cdkDropListConnectedTo]="[unorderedDrop]"
+              class="drag-and-drop-list"
+              (cdkDropListDropped)="drop($event, 'step1')">
+              <div class="drag-and-drop-box" *ngFor="let item of orderedList" cdkDrag>{{item}}</div>
+            </div>
+          </div>
+          <div class="audio-content-body" *ngIf="testData.testStepTypes[0] === 'audioSelection'">
+            <div class="audio-container">
+              <mat-icon class="audio-icon" (click)="playSound(1)">volume_up</mat-icon>
+            </div>
+            <div class="selectable-options">
+              <div class="option" [class]="testForm.get('step1')?.value === testData.testStep1[0] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep1[0], 'step1')">{{testData.testStep1[0]}}</div>
+              <div class="option" [class]="testForm.get('step1')?.value === testData.testStep1[1] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep1[1], 'step1')">{{testData.testStep1[1]}}</div>
+              <div class="option" [class]="testForm.get('step1')?.value === testData.testStep1[2] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep1[2], 'step1')">{{testData.testStep1[2]}}</div>
+              <div class="option" [class]="testForm.get('step1')?.value === testData.testStep1[3] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep1[3], 'step1')">{{testData.testStep1[3]}}</div>
+            </div>
+          </div>
+
           <div class="align-end">
             <button class="btn-primary action-button" type="button" (click)="nextStep(1)">SIGUIENTE</button>
           </div>
         </div>
         <div *ngIf="currentStep === 2" class="step-content">
           <h3 class="question-title">Pregunta 2</h3>
-          <p class="question-text">{{courseService.test1StepContent[1]}}</p>
-          <mat-radio-group class="button-group" formControlName="step2">
-            <mat-radio-button [value]="courseService.test1Step2[0]">{{courseService.test1Step2[0]}}</mat-radio-button>
-            <mat-radio-button [value]="courseService.test1Step2[1]">{{courseService.test1Step2[1]}}</mat-radio-button>
-            <mat-radio-button [value]="courseService.test1Step2[2]">{{courseService.test1Step2[2]}}</mat-radio-button>
-            <mat-radio-button [value]="courseService.test1Step2[3]">{{courseService.test1Step2[3]}}</mat-radio-button>
+          <p class="question-text">{{testData.testStepContent[1]}}</p>
+
+          <mat-radio-group class="button-group" formControlName="step2" *ngIf="testData.testStepTypes[1] === 'multipleSelection'">
+            <mat-radio-button [value]="testData.testStep2[0]">{{testData.testStep2[0]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep2[1]">{{testData.testStep2[1]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep2[2]">{{testData.testStep2[2]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep2[3]">{{testData.testStep2[3]}}</mat-radio-button>
           </mat-radio-group>
+          <div class="input-container" *ngIf="testData.testStepTypes[1] === 'inputSelection'">
+            <input class="form-input" type="text" placeholder="Escriba su respuesta..." formControlName="step2">
+          </div>
+          <div class="audio-content-body" *ngIf="testData.testStepTypes[1] === 'audioSelection'">
+            <div class="audio-container">
+              <mat-icon class="audio-icon" (click)="playSound(2)">volume_up</mat-icon>
+            </div>
+            <div class="selectable-options">
+              <div class="option" [class]="testForm.get('step2')?.value === testData.testStep2[0] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep2[0], 'step2')">{{testData.testStep2[0]}}</div>
+              <div class="option" [class]="testForm.get('step2')?.value === testData.testStep2[1] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep2[1], 'step2')">{{testData.testStep2[1]}}</div>
+              <div class="option" [class]="testForm.get('step2')?.value === testData.testStep2[2] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep2[2], 'step2')">{{testData.testStep2[2]}}</div>
+              <div class="option" [class]="testForm.get('step2')?.value === testData.testStep2[3] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep2[3], 'step2')">{{testData.testStep2[3]}}</div>
+            </div>
+          </div>
+          <div class="drag-and-drop-container" *ngIf="testData.testStepTypes[1] === 'fillBlanks'">
+            <div *ngIf="testData"
+                 cdkDropList
+                 #list="cdkDropList"
+                 [cdkDropListData]="testData.testStep2"
+                 class="drag-and-drop-list">
+              <div class="drag-and-drop-box" *ngFor="let item of testData.testStep2" cdkDragDisabled>{{item}}</div>
+            </div>
+            <div
+              cdkDropList
+              #unorderedDrop="cdkDropList"
+              [cdkDropListData]="unorderedList"
+              [cdkDropListConnectedTo]="[orderedDrop]"
+              class="drag-and-drop-list"
+              (cdkDropListDropped)="drop($event, 'step2')">
+              <div class="drag-and-drop-box" *ngFor="let item of unorderedList" cdkDrag>{{item}}</div>
+            </div>
+            <div
+              cdkDropList
+              #orderedDrop="cdkDropList"
+              [cdkDropListData]="orderedList"
+              [cdkDropListConnectedTo]="[unorderedDrop]"
+              class="drag-and-drop-list"
+              (cdkDropListDropped)="drop($event, 'step2')">
+              <div class="drag-and-drop-box" *ngFor="let item of orderedList" cdkDrag>{{item}}</div>
+            </div>
+          </div>
 
           <div class="button-container">
             <button class="btn-secondary action-button" type="button" (click)="previousStep()">ANTERIOR</button>
@@ -45,10 +142,60 @@
         </div>
         <div *ngIf="currentStep === 3" class="step-content">
           <h3 class="question-title">Pregunta 3</h3>
-          <p class="question-text">{{courseService.test1StepContent[2]}}</p>
-          <div class="input-container">
+          <p class="question-text">{{testData.testStepContent[2]}}</p>
+
+          <mat-radio-group class="button-group" formControlName="step3" *ngIf="testData.testStepTypes[2] === 'multipleSelection'">
+            <mat-radio-button [value]="testData.testStep3[0]">{{testData.testStep3[0]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep3[1]">{{testData.testStep3[1]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep3[2]">{{testData.testStep3[2]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep3[3]">{{testData.testStep3[3]}}</mat-radio-button>
+          </mat-radio-group>
+          <div class="input-container" *ngIf="testData.testStepTypes[2] === 'inputSelection'">
             <input class="form-input" type="text" placeholder="Escriba su respuesta..." formControlName="step3">
           </div>
+          <div class="audio-content-body" *ngIf="testData.testStepTypes[2] === 'audioSelection'">
+            <div class="audio-container">
+              <mat-icon class="audio-icon" (click)="playSound(3)">volume_up</mat-icon>
+            </div>
+            <div class="selectable-options">
+              <div class="option" [class]="testForm.get('step3')?.value === testData.testStep3[0] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep3[0], 'step3')">{{testData.testStep3[0]}}</div>
+              <div class="option" [class]="testForm.get('step3')?.value === testData.testStep3[1] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep3[1], 'step3')">{{testData.testStep3[1]}}</div>
+              <div class="option" [class]="testForm.get('step3')?.value === testData.testStep3[2] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep3[2], 'step3')">{{testData.testStep3[2]}}</div>
+              <div class="option" [class]="testForm.get('step3')?.value === testData.testStep3[3] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep3[3], 'step3')">{{testData.testStep3[3]}}</div>
+            </div>
+          </div>
+          <div class="drag-and-drop-container" *ngIf="testData.testStepTypes[2] === 'fillBlanks'">
+            <div *ngIf="testData"
+                 cdkDropList
+                 #list="cdkDropList"
+                 [cdkDropListData]="testData.testStep3"
+                 class="drag-and-drop-list">
+              <div class="drag-and-drop-box" *ngFor="let item of testData.testStep3" cdkDragDisabled>{{item}}</div>
+            </div>
+            <div
+              cdkDropList
+              #unorderedDrop="cdkDropList"
+              [cdkDropListData]="unorderedList"
+              [cdkDropListConnectedTo]="[orderedDrop]"
+              class="drag-and-drop-list"
+              (cdkDropListDropped)="drop($event, 'step3')">
+              <div class="drag-and-drop-box" *ngFor="let item of unorderedList" cdkDrag>{{item}}</div>
+            </div>
+            <div
+              cdkDropList
+              #orderedDrop="cdkDropList"
+              [cdkDropListData]="orderedList"
+              [cdkDropListConnectedTo]="[unorderedDrop]"
+              class="drag-and-drop-list"
+              (cdkDropListDropped)="drop($event, 'step3')">
+              <div class="drag-and-drop-box" *ngFor="let item of orderedList" cdkDrag>{{item}}</div>
+            </div>
+          </div>
+
           <div class="button-container">
             <button class="btn-secondary action-button" type="button" (click)="previousStep()">ANTERIOR</button>
             <button class="btn-primary action-button" type="button" (click)="nextStep(3)">SIGUIENTE</button>
@@ -56,20 +203,61 @@
         </div>
         <div *ngIf="currentStep === 4" class="step-content">
           <h3 class="question-title">Pregunta 4</h3>
-          <p class="question-text">{{courseService.test1StepContent[3]}}</p>
-          <div class="audio-container">
-            <mat-icon class="audio-icon" (click)="playSound()">volume_up</mat-icon>
+          <p class="question-text">{{testData.testStepContent[3]}}</p>
+
+          <mat-radio-group class="button-group" formControlName="step4" *ngIf="testData.testStepTypes[3] === 'multipleSelection'">
+            <mat-radio-button [value]="testData.testStep4[0]">{{testData.testStep4[0]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep4[1]">{{testData.testStep4[1]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep4[2]">{{testData.testStep4[2]}}</mat-radio-button>
+            <mat-radio-button [value]="testData.testStep4[3]">{{testData.testStep4[3]}}</mat-radio-button>
+          </mat-radio-group>
+          <div class="input-container" *ngIf="testData.testStepTypes[3] === 'inputSelection'">
+            <input class="form-input" type="text" placeholder="Escriba su respuesta..." formControlName="step4">
           </div>
-          <div class="selectable-options">
-            <div class="option" [class]="testForm.get('step4')?.value === courseService.test1Step4[0] ? 'active-option' : ''"
-               (click)="selectOption(courseService.test1Step4[0])">{{courseService.test1Step4[0]}}</div>
-            <div class="option" [class]="testForm.get('step4')?.value === courseService.test1Step4[1] ? 'active-option' : ''"
-               (click)="selectOption(courseService.test1Step4[1])">{{courseService.test1Step4[1]}}</div>
-            <div class="option" [class]="testForm.get('step4')?.value === courseService.test1Step4[2] ? 'active-option' : ''"
-               (click)="selectOption(courseService.test1Step4[2])">{{courseService.test1Step4[2]}}</div>
-            <div class="option" [class]="testForm.get('step4')?.value === courseService.test1Step4[3] ? 'active-option' : ''"
-               (click)="selectOption(courseService.test1Step4[3])">{{courseService.test1Step4[3]}}</div>
+          <div class="audio-content-body" *ngIf="testData.testStepTypes[3] === 'audioSelection'">
+            <div class="audio-container">
+              <mat-icon class="audio-icon" (click)="playSound(4)">volume_up</mat-icon>
+            </div>
+            <div class="selectable-options">
+              <div class="option" [class]="testForm.get('step4')?.value === testData.testStep4[0] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep4[0], 'step4')">{{testData.testStep4[0]}}</div>
+              <div class="option" [class]="testForm.get('step4')?.value === testData.testStep4[1] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep4[1], 'step4')">{{testData.testStep4[1]}}</div>
+              <div class="option" [class]="testForm.get('step4')?.value === testData.testStep4[2] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep4[2], 'step4')">{{testData.testStep4[2]}}</div>
+              <div class="option" [class]="testForm.get('step4')?.value === testData.testStep4[3] ? 'active-option' : ''"
+                   (click)="selectOption(testData.testStep4[3], 'step4')">{{testData.testStep4[3]}}</div>
+            </div>
           </div>
+          <div class="drag-and-drop-container" *ngIf="testData.testStepTypes[3] === 'fillBlanks'">
+            <div *ngIf="testData"
+                 cdkDropList
+                 #list="cdkDropList"
+                 [cdkDropListData]="testData.testStep4"
+                 class="drag-and-drop-list">
+              <div class="drag-and-drop-box" *ngFor="let item of testData.testStep4" cdkDragDisabled>{{item}}</div>
+            </div>
+            <div
+              cdkDropList
+              #unorderedDrop="cdkDropList"
+              [cdkDropListData]="unorderedList"
+              [cdkDropListConnectedTo]="[orderedDrop]"
+              class="drag-and-drop-list"
+              (cdkDropListDropped)="drop($event, 'step4')">
+              <div class="drag-and-drop-box" *ngFor="let item of unorderedList" cdkDrag>{{item}}</div>
+            </div>
+            <div class="arrows"> >> </div>
+            <div
+              cdkDropList
+              #orderedDrop="cdkDropList"
+              [cdkDropListData]="orderedList"
+              [cdkDropListConnectedTo]="[unorderedDrop]"
+              class="drag-and-drop-list"
+              (cdkDropListDropped)="drop($event, 'step4')">
+              <div class="drag-and-drop-box" *ngFor="let item of orderedList" cdkDrag>{{item}}</div>
+            </div>
+          </div>
+
           <div class="button-container">
             <button class="btn-secondary action-button" type="button" (click)="previousStep()">ANTERIOR</button>
           </div>

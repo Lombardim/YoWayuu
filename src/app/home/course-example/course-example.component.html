@@ -2,7 +2,8 @@
   <div class="example-header">
     <div class="header-title">
       <mat-icon class="header-icon" (click)="returnToMenu()">arrow_back</mat-icon>
-      <h2>NIVEL BÁSICO - LECCIÓN {{courseService.currentLesson}} - EJEMPLOS</h2>
+      <h2>NIVEL {{courseService.currentCourse === 'basic' ? 'BÁSICO' : courseService.currentCourse === 'intermediate'
+        ? 'INTERMEDIO' : 'AVANZADO'}} - LECCIÓN {{courseService.currentLesson}} - EJEMPLOS</h2>
     </div>
     <div class="progress-bar-container smaller-progress-bar">
       <b>Progreso: </b>
@@ -13,10 +14,10 @@
   </div>
   <div class="example-content">
     <h2 class="example-title">EJEMPLOS</h2>
-    <div class="example-body">
+    <div class="example-body" *ngIf="exampleData">
       <div class="text-container">
-        <h3 class="text-title">{{courseService.example1Title}}</h3>
-        <p>{{courseService.example1Content}}</p>
+        <h3 class="text-title">{{exampleData.exampleTitle}}</h3>
+        <p>{{exampleData.exampleContent}}</p>
       </div>
     </div>
     <div class="example-actions">

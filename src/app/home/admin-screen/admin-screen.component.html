@@ -1,5 +1,5 @@
 <div class="administration-container">
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table *ngIf="dataSource.length > 0" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
     <!-- id Column -->
@@ -59,4 +59,8 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  <div class="no-data-message" *ngIf="dataSource.length === 0">
+    NO HAY INFORMACIÓN PARA MOSTRAR
+  </div>
 </div>

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {emailPattern, passwordPattern} from "../../shared/utils/validator-patterns";
 import {ToastrService} from "ngx-toastr";
+import {AuthService} from "../../shared/services/auth/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -23,20 +24,25 @@ export class RegisterComponent {
     ),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(8),
-      Validators.pattern(passwordPattern)
+      Validators.minLength(6)
     ]),
   });
 
   constructor(
     private router: Router,
-    private toastService: ToastrService
+    private toastService: ToastrService,
+    private authService: AuthService
   ) {
   }
 
   async register(): Promise<void> {
     if(this.registerForm.valid) {
-
+      await this.authService.register({
+        email: this.registerForm.get('email')?.value ?? '',
+        name: this.registerForm.get('firstName')?.value ?? '',
+        lastName: this.registerForm.get('lastName')?.value ?? '',
+        password: this.registerForm.get('password')?.value ?? ''
+      });
       await this.return();
     } else {
       this.toastService.error('Hay errores en los campos');

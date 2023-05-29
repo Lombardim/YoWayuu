@@ -12,7 +12,9 @@
       </ul>
     </div>
   </div>
-  <div class="course-card inactive-card" matTooltip="Debe completar el nivel anterior">
+  <div class="course-card" [class]="courseService.levelProgress['2'] < 100 ? 'inactive-card' : ''"
+       [matTooltip]="courseService.levelProgress['2'] < 100 ? 'Debe completar el nivel anterior' : ''"
+       (click)="checkCourseCompletion('2', 'intermediate')">
     <div class="course-description">
       <h2>NIVEL INTERMEDIO</h2>
       <p>Contenido del curso: dos lecciones</p>
@@ -24,12 +26,14 @@
         <li>Test</li>
       </ul>
     </div>
-    <div class="icon-container">
+    <div class="icon-container" *ngIf="courseService.levelProgress['2'] < 100">
       <mat-icon class="card-icon">lock</mat-icon>
     </div>
   </div>
-  <div class="course-card inactive-card" matTooltip="Debe completar el nivel anterior">
-    <div class="course-description">
+  <div class="course-card" [class]="courseService.levelProgress['4'] < 100 ? 'inactive-card' : ''"
+       [matTooltip]="courseService.levelProgress['4'] < 100 ? 'Debe completar el nivel anterior' : ''"
+       (click)="checkCourseCompletion('4', 'advanced')">
+      <div class="course-description">
       <h2>NIVEL AVANZADO</h2>
       <p>Contenido del curso: dos lecciones</p>
       <p>Cada lección tiene:</p>
@@ -40,7 +44,7 @@
         <li>Test</li>
       </ul>
     </div>
-    <div class="icon-container">
+    <div class="icon-container" *ngIf="courseService.levelProgress['4'] < 100">
       <mat-icon class="card-icon">lock</mat-icon>
     </div>
   </div>
